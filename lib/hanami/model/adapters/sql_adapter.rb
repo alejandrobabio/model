@@ -44,6 +44,7 @@ module Hanami
         # @since 0.1.0
         def initialize(mapper, uri, options = {})
           super
+          Sequel.default_timezone = :utc
           @connection = Sequel.connect(@uri, @options)
         rescue Sequel::AdapterNotFound => e
           raise DatabaseAdapterNotFound.new(e.message)
